@@ -5,8 +5,8 @@ import React from "react";
 function Home (){
     return(
         <div>
-            <h1>Hello World!</h1>
-            <p>Curso de Programação de Sistemas</p>
+            <h1>Store</h1>
+            <p>Escolha</p>
         </div>
     )
 }
