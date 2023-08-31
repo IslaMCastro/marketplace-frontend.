@@ -2,6 +2,8 @@ import './Tipo.css'
 import React from 'react'
 
 function Tipo() {
+
+    
     return (
         <div>
             <div className="col-6">
