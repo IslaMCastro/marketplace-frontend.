@@ -1,19 +1,22 @@
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home'
 import Navbar from './components/navbar/Navbar';
-import Tipo from './components/Tipo/Tipo'
+import Rotas from './Routes';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <Router>
+      <header className='App-header'>
         <Navbar />
-      </header>
-      <main>
-      </main>
-        <Home/>
-        <Tipo/>
-    </div>
+        </header>
+        <main>
+          <div className='p-3 m-0 border-0 bd-example m-0 border-0'>
+            <Rotas />
+          </div>
+        </main>
+    </Router>
   );
 }
 
