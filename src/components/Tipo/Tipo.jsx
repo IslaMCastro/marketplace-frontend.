@@ -6,8 +6,24 @@ function Tipo() {
 
   function alterar(e){
     setDescricao(e.target.value); 
-
   }
+
+  const dados = [
+    {
+      'id': 1,
+      'descricao': 'Calçados',
+      'created_at': '2023-08-31 00:00:00',
+      'update_at': '2023-08-31 00:00:00',      
+    },
+    {
+      'id': 2,
+      'descricao': 'Tenis',
+      'created_at': '2023-08-31 00:00:00',
+      'update_at': '2023-08-31 00:00:00',      
+    },
+
+    
+  ]
   
   return (
     <div>
