@@ -1,9 +1,18 @@
 import "./Tipo.css";
-import React, { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import api from "../../conn/Api"; //sempre que for usar um arquivo que está dentro 
+//do diretório uso os pontos e barra.
+
 
 function Tipo() {
-  const[id, setId] = useState();  
-  const[descricao, setDescricao] = useState();
+  const[id, setId] = useState(null);  
+  const[descricao, setDescricao] = useState("");
+
+  //Executar algo antes de carregar o componete(renderizar na tela.)
+  useEffect(()=>{
+    carregarDados();
+  }, [])
 
   function alterar(e){
     e.prevetDefault();
@@ -25,8 +34,14 @@ function Tipo() {
 
   }
 
-function carregarDados(){
-  
+async function carregarDados(){ //toda vez que for realizar algo assincrono usa o async.
+  try{
+    const response = await api.get("/tipos")//rotas do backend.
+    console.log(response)
+  }catch(error){
+    console.error('Erro ao pesquisar tipos: ',error)
+  }
+
 }
 
   const dados = [
