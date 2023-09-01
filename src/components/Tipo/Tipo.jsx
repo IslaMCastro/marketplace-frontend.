@@ -6,67 +6,51 @@ import api from "../../conn/Api"; //sempre que for usar um arquivo que está den
 
 
 function Tipo() {
-  const[id, setId] = useState(null);  
-  const[descricao, setDescricao] = useState("");
+  const [id, setId] = useState(null);
+  const [descricao, setDescricao] = useState("");
+  const[dados, setDados]= useState(null);
 
   //Executar algo antes de carregar o componete(renderizar na tela.)
-  useEffect(()=>{
+  useEffect(() => {
     carregarDados();
   }, [])
 
-  function alterar(e){
+  function alterar(e) {
     e.prevetDefault();
-    setDescricao(e.target.value); 
+    setDescricao(e.target.value);
   }
 
-  function salvar (e){
+  function salvar(e) {
     const item = [descricao]
-    console.log(item)    
+    console.log(item)
   }
 
-  function editar (item){
+  function editar(item) {
     setId(item.id)
-    setDescricao(item.descricao)    
+    setDescricao(item.descricao)
   }
 
-  function deletar (item){
-    console.log(item) 
+  function deletar(item) {
+    console.log(item)
 
   }
 
-async function carregarDados(){ //toda vez que for realizar algo assincrono usa o async.
-  try{
-    const response = await api.get("/tipos")//rotas do backend.
-    console.log(response)
-  }catch(error){
-    console.error('Erro ao pesquisar tipos: ',error)
+  async function carregarDados() { //toda vez que for realizar algo assincrono usa o async.
+    try {
+      const response = await api.get("/tipos")//rotas do backend.
+      console.log(response);
+    } catch (error) {
+      console.error('Erro ao pesquisar tipos: ', error)
+    }
+
   }
 
-}
-
-  const dados = [
-    {
-      'id': 1,
-      'descricao': 'Calçados',
-      'created_at': '2023-08-31 00:00:00',
-      'update_at': '2023-08-31 00:00:00',      
-    },
-    {
-      'id': 2,
-      'descricao': 'Tenis',
-      'created_at': '2023-08-31 00:00:00',
-      'update_at': '2023-08-31 00:00:00',      
-    },
-
-    
-  ]
-  
   return (
     <div>
       <div className="col-6">
         <h1>Tipo</h1>
         <div className="d-flex justify-content-center">
-          <form onsubmit={salvar}>
+          <form onSubmit={salvar}>
             <div className="mb-3">
               <label htmlFor="descricao" className="form-label">
                 Descrição:
@@ -94,7 +78,7 @@ async function carregarDados(){ //toda vez que for realizar algo assincrono usa 
       <div>
         <h1>Lista</h1>
         <div>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -105,38 +89,21 @@ async function carregarDados(){ //toda vez que for realizar algo assincrono usa 
               </tr>
             </thead>
             <tbody>
-              {dados.map((item)=>(
+              {dados.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.descricao}</td>
                   <td>{item.created_at}</td>
                   <td>{item.update_at}</td>
+                  <td>
                   <div className="btn-group" role="group">
-                    <button onClick={() => editar (item)} className="btn btn-primary">Editar</button>
+                    <button onClick={() => editar(item)} className="btn btn-primary">Editar</button>
                     <button onClick={() => deletar(item)} className="btn btn-danger">Excluir</button>
                   </div>
+                  </td>
                 </tr>
               ))}
-            </tbody>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
+            </tbody>           
           </table>
         </div>
       </div>
