@@ -38,7 +38,8 @@ function Tipo() {
   async function carregarDados() { //toda vez que for realizar algo assincrono usa o async.
     try {
       const response = await api.get("/tipos")//rotas do backend.
-      console.log(response);
+      setDados(response.data);
+      console.log(dados);
     } catch (error) {
       console.error('Erro ao pesquisar tipos: ', error)
     }
